@@ -59,3 +59,11 @@ import { apiClient } from "./api-client"
        throw error
      }
 }
+export async function confirmEmail(token) {
+  try {
+    const { data } = await apiClient.get(`/Auth/Confirm?token=${token}`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}

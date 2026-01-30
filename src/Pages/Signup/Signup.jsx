@@ -33,25 +33,44 @@ export default function Signup() {
     })
      async function handleSignUp(values){
         
-        try {
+        // try {
             
-            const response= await sendDataToSignup(values)
-            if(response.isSuccess){
-                toast("Your account has been created✅")
-                setTimeout(()=>{
-                    navigate('/send-email')
-                },3000)
+        //     const response= await sendDataToSignup(values)
+        //     if(response.isSuccess){
+        //         toast("Account created! Please check your email to confirm.")
+        //         setTimeout(()=>{
+        //             navigate('/login')
+        //         },3000)
                 
                 
-            }
-        } catch (error) {
-            if(error.response.data.errors[0].title === "DuplicateUserName"){
-                setUsernameError(error.response.data.errors[0].message)
+        //     }
+        // } catch (error) {
+            // if(error.response.data.errors[0].title === "DuplicateUserName"){
+            //     setUsernameError(error.response.data.errors[0].message)
 
-            }
-            console.log(error)
-            setIsExistError(error.response.data.message)
-        }   
+            // }
+            // console.log(error)
+            // setIsExistError(error.response.data.message)
+      
+        // }   
+        try {
+  const response = await sendDataToSignup(values);
+  if (response.isSuccess) {
+    toast("Account created! Please check your email to confirm.");
+    setTimeout(() => {
+      navigate('/send-confirm-email');
+    }, 3000);
+  }
+} catch (error) {
+  if (error.response.data.errors[0].title === "DuplicateUserName") {
+    setUsernameError(error.response.data.errors[0].message);
+    setIsExistError(''); 
+  } else {
+    console.log(error);
+    setIsExistError(error.response.data.message);
+    setUsernameError(''); 
+  }
+}
     }
     const formik=useFormik({
         initialValues:{

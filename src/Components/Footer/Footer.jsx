@@ -11,7 +11,7 @@ export default function Footer() {
       <div className='grid grid-cols-1 gap-8 text-center sm:grid-cols-2 sm:text-left lg:grid-cols-4'>
          {/* logo */}
       <div>
-        <h2 className='text-white font-bold text-2xl'>KHADMA <span className='text-Purple-400'> HUB</span></h2>
+        <Link to="/" className='text-white font-bold text-2xl'>KHADMA <span className='text-amber-500'> HUB</span></Link>
         <p className='text-white '>Helping you find the right<br/> service, faster.</p>
         
       </div>
